@@ -14,10 +14,10 @@ def get_response(path):
             request.query_string.decode('utf8'))
     elif request.method == 'POST':
         if request.form:
-            r = request.post(upstream + path, 
+            r = requests.post(upstream + path, 
                             data=dict(request.form))
         elif request.json:
-            r = request.post(upstream + path,
+            r = requests.post(upstream + path,
                     json=request.json)
     return Response(r.text, mimetype=r.headers.get('Content-Type'))
 
